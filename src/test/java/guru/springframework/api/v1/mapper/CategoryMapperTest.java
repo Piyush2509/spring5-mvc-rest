@@ -18,7 +18,7 @@ public class CategoryMapperTest {
 	CategoryMapper categoryMapper = CategoryMapper.INSTANCE;
 
 	@Test
-	public void categoryTpCategoryDTO() {
+	public void testCategoryToCategoryDTO() throws Exception {
 		// given
 		Category category = new Category();
 		category.setName(NAME);

@@ -11,6 +11,6 @@ public interface CategoryService {
 
 	List<CategoryDTO> getAllCategories();
 
-	CategoryDTO getCategoryNyName(String name);
+	CategoryDTO getCategoryByName(String name);
 
 }

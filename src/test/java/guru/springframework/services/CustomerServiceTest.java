@@ -1,6 +1,7 @@
 package guru.springframework.services;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -71,6 +72,27 @@ public class CustomerServiceTest {
 
 		// then
 		assertEquals("Michale", customerDTO.getFirstname());
+	}
+
+	@Test
+	public void testCreateNewCustomer() throws Exception {
+		// given
+		CustomerDTO customerDTO = new CustomerDTO();
+		customerDTO.setFirstname("Jim");
+
+		Customer savedCustomer = new Customer();
+		savedCustomer.setFirstname(customerDTO.getFirstname());
+		savedCustomer.setLastname(customerDTO.getLastname());
+		savedCustomer.setId(1L);
+
+		when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
+
+		// when
+		CustomerDTO savedDTO = customerService.createNewCustomer(customerDTO);
+
+		// then
+		assertEquals(customerDTO.getFirstname(), savedDTO.getFirstname());
+		assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
 	}
 
 }

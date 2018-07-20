@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import guru.springframework.api.v1.mapper.CustomerMapper;
 import guru.springframework.api.v1.model.CustomerDTO;
+import guru.springframework.domain.Customer;
 import guru.springframework.repositories.CustomerRepository;
 
 /**
@@ -27,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<CustomerDTO> getAllCustomers() {
 		return customerRepository.findAll().stream().map(customer -> {
 			CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-			customerDTO.setCustomerUrl("/api/v1/customer/" + customer.getId());
+			customerDTO.setCustomerUrl("/api/v1/customers/" + customer.getId());
 			return customerDTO;
 		}).collect(Collectors.toList());
 	}
@@ -36,6 +37,15 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDTO getCustomerById(Long id) {
 		return customerRepository.findById(id).map(customerMapper::customerToCustomerDTO)
 				.orElseThrow(RuntimeException::new);
+	}
+
+	@Override
+	public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
+		Customer customer = customerMapper.customerDTOToCustomer(customerDTO);
+		Customer savedCustomer = customerRepository.save(customer);
+		CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(savedCustomer);
+		returnDTO.setCustomerUrl("/api/v1/customers/" + savedCustomer.getId());
+		return returnDTO;
 	}
 
 }

@@ -3,6 +3,8 @@ package guru.springframework.services;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -114,6 +116,13 @@ public class CustomerServiceTest {
 		// then
 		assertEquals(customerDTO.getFirstname(), savedDTO.getFirstname());
 		assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
+	}
+
+	@Test
+	public void testDeleteCustomerById() throws Exception {
+		Long id = 1L;
+		customerService.deleteCustomerById(id);
+		verify(customerRepository, times(1)).deleteById(anyLong());
 	}
 
 }

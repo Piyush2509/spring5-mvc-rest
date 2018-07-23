@@ -9,6 +9,7 @@ import guru.springframework.api.v1.mapper.CustomerMapper;
 import guru.springframework.api.v1.model.CustomerDTO;
 import guru.springframework.controllers.v1.CustomerController;
 import guru.springframework.domain.Customer;
+import guru.springframework.exceptions.ResourceNotFoundException;
 import guru.springframework.repositories.CustomerRepository;
 
 /**
@@ -39,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerRepository.findById(id).map(customerMapper::customerToCustomerDTO).map(customerDTO -> {
 			customerDTO.setCustomerUrl(getCustomerUrl(id));
 			return customerDTO;
-		}).orElseThrow(RuntimeException::new);
+		}).orElseThrow(ResourceNotFoundException::new);
 	}
 
 	@Override

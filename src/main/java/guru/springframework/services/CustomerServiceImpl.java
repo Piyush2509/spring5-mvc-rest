@@ -55,13 +55,6 @@ public class CustomerServiceImpl implements CustomerService {
 		return saveAndReturnDTO(customer);
 	}
 
-	private CustomerDTO saveAndReturnDTO(Customer customer) {
-		Customer savedCustomer = customerRepository.save(customer);
-		CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(savedCustomer);
-		returnDTO.setCustomerUrl(getCustomerUrl(savedCustomer.getId()));
-		return returnDTO;
-	}
-
 	@Override
 	public CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO) {
 		return customerRepository.findById(id).map(customer -> {
@@ -83,6 +76,13 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomerById(Long id) {
 		customerRepository.deleteById(id);
+	}
+
+	private CustomerDTO saveAndReturnDTO(Customer customer) {
+		Customer savedCustomer = customerRepository.save(customer);
+		CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(savedCustomer);
+		returnDTO.setCustomerUrl(getCustomerUrl(savedCustomer.getId()));
+		return returnDTO;
 	}
 
 	private String getCustomerUrl(Long id) {

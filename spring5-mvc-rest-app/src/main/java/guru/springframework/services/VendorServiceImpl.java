@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import guru.springframework.api.v1.mapper.VendorMapper;
 import guru.springframework.api.v1.model.VendorDTO;
 import guru.springframework.api.v1.model.VendorListDTO;
-import guru.springframework.controllers.v1.CustomerController;
 import guru.springframework.controllers.v1.VendorController;
 import guru.springframework.domain.Vendor;
 import guru.springframework.exceptions.ResourceNotFoundException;

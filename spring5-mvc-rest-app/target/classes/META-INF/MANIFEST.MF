@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: spring5-mvc-rest
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: piyush.b.kumar
+Implementation-Vendor-Id: guru.springframework
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/spring5-mvc-rest-parent/spring5-mvc-rest-app
+Created-By: Maven Integration for Eclipse
+

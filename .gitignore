@@ -1,4 +1,6 @@
 /target/
+/spring5-mvc-rest-app/target/
+/rest-model/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
